@@ -60,17 +60,20 @@ const routes: { [path: string]: () => HandlerResponse | undefined } = {
   "/": index,
 };
 
-const server: Handler = (event) => {
+const createRequestHandler: Handler = (event) => {
   let route = routes[event.path];
 
   if (!route) {
     return {
       statusCode: 404,
       body: createHTML("Not found"),
+      multiValueHeaders: {
+        "Content-Type": ["text/html"],
+      },
     };
   }
 
   return route();
 };
 
-export { server };
+export { createRequestHandler };
