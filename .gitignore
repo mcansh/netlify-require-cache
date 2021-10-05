@@ -1,3 +1,4 @@
 netlify/functions/server/dist
 node_modules
 .ds_store
+.netlify
